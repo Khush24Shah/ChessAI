@@ -57,17 +57,6 @@ def highlightSquares(screen, squareSelected, validMoves, checks, king, last):
         for r, c in last:
             screen.blit(s, (c * SQUARE_SIZE, r * SQUARE_SIZE))
 
-    if squareSelected is not None:
-        r, c = squareSelected
-
-        s.fill(p.Color("purple"))
-
-        screen.blit(s, (c * SQUARE_SIZE, r * SQUARE_SIZE))
-
-        s.fill(p.Color("blue"))
-        for move in validMoves:
-            screen.blit(s, (move[1] * SQUARE_SIZE, move[0] * SQUARE_SIZE))
-
     if checks:
         s.fill(p.Color("red"))
         screen.blit(s, (king[1] * SQUARE_SIZE, king[0] * SQUARE_SIZE))
@@ -84,6 +73,17 @@ def highlightSquares(screen, squareSelected, validMoves, checks, king, last):
             s.set_alpha(255)
             s.fill(p.Color("orange"))
             screen.blit(s, (piece[1] * SQUARE_SIZE, piece[0] * SQUARE_SIZE))
+
+    if squareSelected is not None:
+        r, c = squareSelected
+
+        s.fill(p.Color("purple"))
+
+        screen.blit(s, (c * SQUARE_SIZE, r * SQUARE_SIZE))
+
+        s.fill(p.Color("blue"))
+        for move in validMoves:
+            screen.blit(s, (move[1] * SQUARE_SIZE, move[0] * SQUARE_SIZE))
 
 
 def drawText(screen, text):
