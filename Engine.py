@@ -238,8 +238,6 @@ class Game:
             piece = self.board[r][c][1]
             pin = self.xRayChecks.get((r, c), None)
 
-            print(r, c)
-
             self.moveFunctions[piece](r, c, moves, ally, enemy, pin, valid)
 
             if not moves[(r, c)]:
