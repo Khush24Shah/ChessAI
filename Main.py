@@ -16,7 +16,7 @@ IMAGES = {}
 def loadImages():
     pieces = ("wK", "wQ", "wR", "wB", "wN", "wP", "bK", "bQ", "bR", "bB", "bN", "bP")
     for piece in pieces:
-        IMAGES[piece] = p.transform.scale(p.image.load(f"D:/Chess/Chess - Khush/New/Images/{piece}.png"), (SQUARE_SIZE, SQUARE_SIZE))
+        IMAGES[piece] = p.transform.scale(p.image.load(f"Images/{piece}.png"), (SQUARE_SIZE, SQUARE_SIZE))
     # An image can be accessed by using IMAGES[<name of the piece>]
 
 

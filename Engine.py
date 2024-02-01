@@ -18,12 +18,26 @@ class Game:
                       ["wP", "wP", "wP", "wP", "wP", "wP", "wP", "wP"],
                       ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]]
 
+        # just for test (play Qg5 with white in this position having white as human player and black as AI)
+        # self.board = [["bR", "--", "bB", "bQ", "bK", "--", "bN", "bR"],
+        #               ["bP", "bP", "bP", "bP", "--", "bP", "bP", "bP"],
+        #               ["--", "--", "bN", "--", "--", "--", "--", "--"],
+        #               ["--", "--", "bB", "--", "bP", "--", "--", "--"],
+        #               ["--", "--", "wB", "--", "wP", "--", "--", "--"],
+        #               ["--", "--", "wN", "--", "--", "--", "--", "--"],
+        #               ["wP", "wP", "wP", "wP", "--", "wP", "wP", "wP"],
+        #               ["wR", "--", "wB", "wQ", "wK", "--", "wN", "wR"]]
+
         self.whiteToMove = True
         self.whiteKing = (7, 4)
         self.blackKing = (0, 4)
 
         self.whitePieces = [(6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7)]
         self.blackPieces = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7)]
+
+        # just for test
+        # self.whitePieces = [(6, 0), (6, 1), (6, 2), (6, 3), (4, 4), (6, 5), (6, 6), (6, 7), (7, 0), (5, 2), (7, 2), (7, 3), (7, 4), (4, 2), (7, 6), (7, 7)]
+        # self.blackPieces = [(0, 0), (2, 2), (0, 2), (0, 3), (0, 4), (3, 2), (0, 6), (0, 7), (1, 0), (1, 1), (1, 2), (1, 3), (3, 4), (1, 5), (1, 6), (1, 7)]
 
         self.whitePieces.sort()
         self.blackPieces.sort(reverse=True)
@@ -105,7 +119,7 @@ class Game:
             if (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                 piece = self.board[checkRow][checkCol]
 
-                if piece[0] is enemy and piece[1] in ("R", "Q", "K"):
+                if piece[0] == enemy and piece[1] in ("R", "Q", "K"):
                     if check:
                         return True
                     self.checks[direction] = (checkRow, checkCol)
@@ -116,18 +130,18 @@ class Game:
                 while (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                     piece = self.board[checkRow][checkCol]
 
-                    if piece[0] is enemy and piece[1] not in ("R", "Q"):
+                    if piece[0] == enemy and piece[1] not in ("R", "Q"):
                         break
-                    elif piece[0] is ally and not pin:
+                    elif piece[0] == ally and not pin:
                         if check:
                             break
                         pin = (checkRow, checkCol)
-                    elif pin and piece[0] is ally:
+                    elif pin and piece[0] == ally:
                         break
-                    elif pin and piece[0] is enemy and piece[1] in ("R", "Q"):
+                    elif pin and piece[0] == enemy and piece[1] in ("R", "Q"):
                         self.xRayChecks[pin] = (direction, (-direction[0], -direction[1]), piece[1], king)
                         break
-                    elif piece[0] is enemy and piece[1] in ("R", "Q"):
+                    elif piece[0] == enemy and piece[1] in ("R", "Q"):
                         if check:
                             return True
                         self.checks[direction] = (checkRow, checkCol)
@@ -142,7 +156,7 @@ class Game:
             if (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                 piece = self.board[checkRow][checkCol]
 
-                if piece[0] is enemy and (piece[1] in ("B", "Q", "K") or piece == "bP"):
+                if piece[0] == enemy and (piece[1] in ("B", "Q", "K") or (ally == "w" and piece[1] == "P")):
                     if check:
                         return True
                     self.checks[direction] = (checkRow, checkCol)
@@ -153,18 +167,18 @@ class Game:
                 while (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                     piece = self.board[checkRow][checkCol]
 
-                    if piece[0] is enemy and piece[1] not in ("B", "Q"):
+                    if piece[0] == enemy and piece[1] not in ("B", "Q"):
                         break
-                    elif piece[0] is ally and not pin:
+                    elif piece[0] == ally and not pin:
                         if check:
                             break
                         pin = (checkRow, checkCol)
-                    elif pin and piece[0] is ally:
+                    elif pin and piece[0] == ally:
                         break
-                    elif pin and piece[0] is enemy and piece[1] in ("B", "Q"):
+                    elif pin and piece[0] == enemy and piece[1] in ("B", "Q"):
                         self.xRayChecks[pin] = (direction, (-direction[0], -direction[1]), piece[1], king)
                         break
-                    elif piece[0] is enemy and piece[1] in ("B", "Q"):
+                    elif piece[0] == enemy and piece[1] in ("B", "Q"):
                         if check:
                             return True
                         self.checks[direction] = (checkRow, checkCol)
@@ -179,7 +193,7 @@ class Game:
             if (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                 piece = self.board[checkRow][checkCol]
 
-                if piece[0] is enemy and (piece[1] in ("B", "Q", "K") or piece == "wP"):
+                if piece[0] == enemy and (piece[1] in ("B", "Q", "K") or (ally == "b" and piece[1] == "P")):
                     if check:
                         return True
                     self.checks[direction] = (checkRow, checkCol)
@@ -190,18 +204,18 @@ class Game:
                 while (0 <= checkRow <= 7) and (0 <= checkCol <= 7):
                     piece = self.board[checkRow][checkCol]
 
-                    if piece[0] is enemy and piece[1] not in ("B", "Q"):
+                    if piece[0] == enemy and piece[1] not in ("B", "Q"):
                         break
-                    elif piece[0] is ally and not pin:
+                    elif piece[0] == ally and not pin:
                         if check:
                             break
                         pin = (checkRow, checkCol)
-                    elif pin and piece[0] is ally:
+                    elif pin and piece[0] == ally:
                         break
-                    elif pin and piece[0] is enemy and piece[1] in ("B", "Q"):
+                    elif pin and piece[0] == enemy and piece[1] in ("B", "Q"):
                         self.xRayChecks[pin] = (direction, (-direction[0], -direction[1]), piece[1], king)
                         break
-                    elif piece[0] is enemy and piece[1] in ("B", "Q"):
+                    elif piece[0] == enemy and piece[1] in ("B", "Q"):
                         if check:
                             return True
                         self.checks[direction] = (checkRow, checkCol)
@@ -223,6 +237,8 @@ class Game:
 
             piece = self.board[r][c][1]
             pin = self.xRayChecks.get((r, c), None)
+
+            print(r, c)
 
             self.moveFunctions[piece](r, c, moves, ally, enemy, pin, valid)
 
@@ -270,9 +286,9 @@ class Game:
                         while 0 <= checkCol <= 7:
                             piece = self.board[r][checkCol]
 
-                            if piece[0] is ally or (piece[0] is enemy and piece[1] not in ("R", "Q")):
+                            if piece[0] == ally or (piece[0] == enemy and piece[1] not in ("R", "Q")):
                                 moves[(r, c)].append((r + moveAmount, c - 1))
-                            elif piece[0] is enemy and piece[1] in ("R", "Q"):
+                            elif piece[0] == enemy and piece[1] in ("R", "Q"):
                                 break
 
                             checkCol += d
@@ -295,9 +311,9 @@ class Game:
                         while 0 <= checkCol <= 7:
                             piece = self.board[r][checkCol]
 
-                            if piece[0] is ally or (piece[0] is enemy and piece[1] not in ("R", "Q")):
+                            if piece[0] == ally or (piece[0] == enemy and piece[1] not in ("R", "Q")):
                                 moves[(r, c)].append((r + moveAmount, c + 1))
-                            elif piece[0] is enemy and piece[1] in ("R", "Q"):
+                            elif piece[0] == enemy and piece[1] in ("R", "Q"):
                                 break
 
                             checkCol += d
