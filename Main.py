@@ -128,14 +128,14 @@ if __name__ == "__main__":
                     location = p.mouse.get_pos()  # (x, y) location of the mouse
 
                     squareSelected = (location[1] // SQUARE_SIZE, location[0] // SQUARE_SIZE)  # Determine which box of the board is selected
-                    print(squareSelected)
+                    # print(squareSelected)
 
                     if prevSquareSelected is not None and prevSquareSelected == squareSelected:  # If the player clicked the same square twice
                         prevSquareSelected = None  # deselect
 
                     else:
                         if prevSquareSelected is None:
-                            print(tuple(game_state.validMoves.keys()))
+                            # print(tuple(game_state.validMoves.keys()))
                             if squareSelected in tuple(game_state.validMoves.keys()):
                                 prevSquareSelected = squareSelected
 
