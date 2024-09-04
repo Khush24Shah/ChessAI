@@ -60,7 +60,7 @@ pieceValue = {"K": (0, kingScores), "Q": (9, queenScores), "R": (5, rookScores),
 CHECKMATE = 10000
 STALEMATE = 0
 
-MAX_DEPTH = 5
+MAX_DEPTH = 4
 
 global count
 
@@ -111,7 +111,7 @@ def findAIMove(game_state):
 
     count = 1
 
-    move = minMaxMove(game_state)
+    move = minMaxMove(game_state, depth=MAX_DEPTH)
 
     if move is None:
         move = randomMove(game_state.getValidMoves())
@@ -176,13 +176,13 @@ def greedyMove(game_state):
     return bestMove
 
 
-def minMaxMove(game_state):
+def minMaxMove(game_state, depth=MAX_DEPTH):
     global bestMove
     bestMove = None
 
-    # minMax(game_state, MAX_DEPTH, game_state.whiteToMove)
-    # negaMax(game_state, MAX_DEPTH, 1 if game_state.whiteToMove else -1)
-    negaMaxAlphaBeta(game_state, MAX_DEPTH, -CHECKMATE, CHECKMATE, 1 if game_state.whiteToMove else -1)
+    # minMax(game_state, depth, game_state.whiteToMove)
+    # negaMax(game_state, depth, 1 if game_state.whiteToMove else -1)
+    negaMaxAlphaBeta(game_state, depth, -CHECKMATE, CHECKMATE, 1 if game_state.whiteToMove else -1)
 
     return bestMove
 
