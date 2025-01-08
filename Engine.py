@@ -18,26 +18,12 @@ class Game:
                       ["wP", "wP", "wP", "wP", "wP", "wP", "wP", "wP"],
                       ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]]
 
-        # just for test (play Qg5 with white in this position having white as human player and black as AI)
-        # self.board = [["bR", "--", "bB", "bQ", "bK", "--", "bN", "bR"],
-        #               ["bP", "bP", "bP", "bP", "--", "bP", "bP", "bP"],
-        #               ["--", "--", "bN", "--", "--", "--", "--", "--"],
-        #               ["--", "--", "bB", "--", "bP", "--", "--", "--"],
-        #               ["--", "--", "wB", "--", "wP", "--", "--", "--"],
-        #               ["--", "--", "wN", "--", "--", "--", "--", "--"],
-        #               ["wP", "wP", "wP", "wP", "--", "wP", "wP", "wP"],
-        #               ["wR", "--", "wB", "wQ", "wK", "--", "wN", "wR"]]
-
         self.whiteToMove = True
         self.whiteKing = (7, 4)
         self.blackKing = (0, 4)
 
         self.whitePieces = [(6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7)]
         self.blackPieces = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7)]
-
-        # just for test
-        # self.whitePieces = [(6, 0), (6, 1), (6, 2), (6, 3), (4, 4), (6, 5), (6, 6), (6, 7), (7, 0), (5, 2), (7, 2), (7, 3), (7, 4), (4, 2), (7, 6), (7, 7)]
-        # self.blackPieces = [(0, 0), (2, 2), (0, 2), (0, 3), (0, 4), (3, 2), (0, 6), (0, 7), (1, 0), (1, 1), (1, 2), (1, 3), (3, 4), (1, 5), (1, 6), (1, 7)]
 
         self.whitePieces.sort()
         self.blackPieces.sort(reverse=True)
